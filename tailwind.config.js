@@ -12,7 +12,13 @@ module.exports = {
                     DEFAULT: '#ac5bf7',
                 },
                 background: {
-                    DEFAULT: '#111320',
+                    DEFAULT: '#D9E6F6',
+                    secondary: '#F1F9FE',
+                    active: '#BBCDE8',
+                    dark: {
+                        DEFAULT: '#111320',
+                        secondary: '#282e54',
+                    },
                 },
             },
         },
