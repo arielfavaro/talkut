@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import UserSidebar from '@/components/UserSidebar'
 import styles from '../styles/Home.module.css'
+import { signIn, signOut, useSession } from 'next-auth/client'
 
 export default function Home() {
+  const [session, loading] = useSession()
+
   return (
     <div className={styles.container}>
       <Head>
@@ -11,6 +14,17 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+
+        {!session && <>
+          Not signed in <br />
+          <button onClick={() => signIn()}>Sign in</button>
+        </>}
+
+        {session && <>
+          Signed in as {session.user.email} <br />
+          <button onClick={() => signOut()}>Sign out</button>
+        </>}
+
         <UserSidebar />
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>

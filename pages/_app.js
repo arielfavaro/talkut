@@ -2,6 +2,7 @@ import Head from 'next/head'
 import '@/styles/globals.css'
 // import 'tailwindcss/tailwind.css'
 import { motion } from 'framer-motion'
+import { Provider } from 'next-auth/client'
 
 function TalkutApp({ Component, pageProps, router }) {
     return (
@@ -43,7 +44,9 @@ function TalkutApp({ Component, pageProps, router }) {
                     opacity: 1
                 },
             }}>
-                <Component {...pageProps} />
+                <Provider session={pageProps.session}>
+                    <Component {...pageProps} />
+                </Provider>
             </motion.div>
         </>
     )
