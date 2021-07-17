@@ -1,0 +1,7 @@
+.wrapper {
+    @apply bg-black rounded-xl shadow text-white p-4;
+}
+
+.heading {
+    @apply text-xl font-bold
+}
