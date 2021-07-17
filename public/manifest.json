@@ -1,0 +1,22 @@
+{
+    "short_name": "Talkut",
+    "name": "Talkut",
+    "icons": [
+      {
+        "src": "favicon.ico",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "type": "image/x-icon"
+      },
+      {
+        "src": "icons/icon192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+    ],
+    "start_url": "/",
+    "scope": "/",
+    "orientation": "portrait",
+    "display": "standalone",
+    "theme_color": "#ac5bf7",
+    "background_color": "#111320"
+  }
