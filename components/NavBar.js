@@ -9,7 +9,7 @@ export default function NavBar() {
 
     return (
         <nav className="bg-primary py-2 mb-4">
-            <div className="container flex items-center gap-x-4">
+            <div className="container flex flex-wrap items-center gap-x-4">
                 <div className="bg-white rounded-full px-4 flex items-center">
                     <Image
                         src="/logo-color.svg"

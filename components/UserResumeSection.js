@@ -15,7 +15,7 @@ export default function UserResumeSection() {
 
                     <p className="text-gray-400"><span className="font-bold">Sorte de hoje: </span>Se logou, está funcionando 🚀</p>
 
-                    <div className="grid grid-cols-6 py-4">
+                    <div className="grid grid-cols-4 py-4">
                         <UserInfo label="Repositórios" value={user.public_repos} icon={<GoRepo />} />
                         <UserInfo label="Repositórios Privados" value={user.total_private_repos} icon={<RiGitRepositoryPrivateLine />} />
                     </div>
