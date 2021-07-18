@@ -1,15 +1,16 @@
-import { signOut } from "next-auth/client";
 import Image from "next/image";
 import Link from 'next/link'
-import { useUser } from "@/hooks/user";
+import NavItems from "@/components/NavItems";
+import { useState } from "react"
+import { FaBars } from 'react-icons/fa'
 
 export default function NavBar() {
 
-    const { user, isLoading } = useUser()
+    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <nav className="bg-primary py-2 mb-4">
-            <div className="container flex flex-wrap items-center gap-x-4">
+            <div className="container flex flex-wrap items-center justify-between px-4 lg:px-0 gap-x-4">
                 <div className="bg-white rounded-full px-4">
                     <Link href="/">
                         <a className="flex">
@@ -22,21 +23,15 @@ export default function NavBar() {
                         </a>
                     </Link>
                 </div>
-                <Link href="/followers">
-                    <a className="text-white">Seguidores</a>
-                </Link>
-                <Link href="/following">
-                    <a className="text-white">Seguindo</a>
-                </Link>
-                <Link href="/repositories">
-                    <a className="text-white">Repositórios</a>
-                </Link>
-                <div className="text-white ml-auto flex gap-x-4">
-                    <span className="text-white">{!isLoading && user.email}</span>
-                    <button className="text-white" onClick={() => signOut()}>
-                        Sair
-                    </button>
+                <div className="hidden lg:flex flex-grow gap-x-4">
+                    <NavItems />
                 </div>
+                <button className="block lg:hidden" onClick={() => setIsOpen(!isOpen)}>
+                    <FaBars className="text-white text-2xl" />
+                </button>
+            </div>
+            <div className={`flex-col items-center lg:hidden ${isOpen ? 'flex' : 'hidden'}`}>
+                <NavItems />
             </div>
         </nav>
     )
