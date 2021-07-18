@@ -1,6 +1,6 @@
-import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import UserProfileThumb from "@/components/UserProfileThumb"
 
 export default function UserFollowing() {
 
@@ -17,19 +17,9 @@ export default function UserFollowing() {
     return (
         <>
             <h3 className="text-xl font-bold mb-3">Seguindo ({following.length})</h3>
-            <div className="grid grid-cols-3 gap-x-3">
+            <div className="grid grid-cols-3 gap-x-2">
                 {following.slice(0, 9).map(follower => (
-                    <div key={follower.id}>
-                        <Image
-                            className="rounded-lg"
-                            src={follower.avatar_url}
-                            width={100}
-                            height={100}
-                            alt=""
-                            objectFit="cover"
-                            objectPosition="center"
-                        />
-                    </div>
+                    <UserProfileThumb key={follower.id} user={follower} />
                 ))}
             </div>
             {following.length > 9 &&
