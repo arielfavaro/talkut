@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 // import 'tailwindcss/tailwind.css'
 import { motion } from 'framer-motion'
 import { Provider } from 'next-auth/client'
+import EnsureAuthenticated from '../components/auth/EnsureAuthenticated'
 
 function TalkutApp({ Component, pageProps, router }) {
     return (
@@ -45,7 +46,9 @@ function TalkutApp({ Component, pageProps, router }) {
                 },
             }}>
                 <Provider session={pageProps.session}>
-                    <Component {...pageProps} />
+                    <EnsureAuthenticated>
+                        <Component {...pageProps} />
+                    </EnsureAuthenticated>
                 </Provider>
             </motion.div>
         </>
