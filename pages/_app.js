@@ -38,14 +38,14 @@ function TalkutApp({ Component, pageProps, router }) {
                 <meta name="theme-color" content="#ac5bf7" />
             </Head>
 
-            <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" variants={{
+            {/* <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" variants={{
                 pageInitial: {
                     opacity: 0,
                 },
                 pageAnimate: {
                     opacity: 1
                 },
-            }}>
+            }}> */}
                 <Provider session={pageProps.session}>
                     {/* <EnsureAuthenticated> */}
                         <UserProvider>
@@ -53,7 +53,7 @@ function TalkutApp({ Component, pageProps, router }) {
                         </UserProvider>
                     {/* </EnsureAuthenticated> */}
                 </Provider>
-            </motion.div>
+            {/* </motion.div> */}
         </>
     )
 }
