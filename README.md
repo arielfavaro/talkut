@@ -14,6 +14,7 @@
 - Autenticação OAuth com GitHub
 - Listagem de seguidores e seguindo
 - Listagem de repositórios
+- Breve informação do perfil logado
 
 
 ## Roadmap 🚟
@@ -23,8 +24,22 @@
 - Depoimentos
 
 
-### Para iniciar o projeto local🧾
+### Para rodar o projeto 🧾
 
 ```bash
 npm run dev
+```
+
+Se não possuir um banco de dados MySQL, comente o trecho do código em `[...nextauth.js]`
+
+```javascript
+database: {
+    type: 'mysql',
+    host: process.env.DATABASE_HOST,
+    port: 3306,
+    username: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
+    synchronize: true
+},
 ```
