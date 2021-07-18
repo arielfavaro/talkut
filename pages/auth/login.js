@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { getProviders, signIn } from 'next-auth/client'
+import { getProviders, getSession, signIn } from 'next-auth/client'
 
 export default function Login({ providers }) {
 
@@ -45,8 +45,21 @@ export default function Login({ providers }) {
     )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({ req }) {
     const providers = await getProviders()
+
+    const session = await getSession({ req })
+
+    if (session) {
+        // res.writeHead(302, { 'Location': '/' })
+        return {
+            redirect: {
+                destination: '/',
+                permantent: false,
+            },
+        }
+    }
+
     return {
         props: { providers }
     }
