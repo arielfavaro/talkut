@@ -11,6 +11,7 @@
 
 ## Stack 🧶
 - NextJs
+- Tailwindcss
 - Deploy feito na Vercel
 
 ## Features 🥗
