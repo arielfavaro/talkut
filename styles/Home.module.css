@@ -1,5 +1,5 @@
 .main {
     /* @apply flex lg:flex-row flex-col */
-    @apply flex flex-col lg:grid gap-x-4 items-start;
+    @apply flex flex-col lg:grid gap-x-4 items-stretch lg:items-start gap-y-4 lg:gap-y-0;
     grid-template-columns: 160px 1fr 312px;
 }
