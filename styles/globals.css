@@ -7,3 +7,7 @@
         @apply mx-auto;
     }
 }
+
+body {
+    @apply bg-background;
+}

@@ -3,7 +3,8 @@ import '@/styles/globals.css'
 // import 'tailwindcss/tailwind.css'
 import { motion } from 'framer-motion'
 import { Provider } from 'next-auth/client'
-import EnsureAuthenticated from '../components/auth/EnsureAuthenticated'
+import EnsureAuthenticated from '@/components/auth/EnsureAuthenticated'
+import { UserProvider } from '@/hooks/user'
 
 function TalkutApp({ Component, pageProps, router }) {
     return (
@@ -12,7 +13,7 @@ function TalkutApp({ Component, pageProps, router }) {
                 <meta charSet="utf-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta key="description" name="description" content="" />
+                <meta key="description" name="description" content="A Dev's social network" />
                 <meta key="keywords" name="keywords" content="" />
                 <link key="canonical" rel="canonical" href="https://talkut.com.br/" />
                 <link rel="icon" href="/favicon.ico" />
@@ -47,7 +48,9 @@ function TalkutApp({ Component, pageProps, router }) {
             }}>
                 <Provider session={pageProps.session}>
                     <EnsureAuthenticated>
-                        <Component {...pageProps} />
+                        <UserProvider>
+                            <Component {...pageProps} />
+                        </UserProvider>
                     </EnsureAuthenticated>
                 </Provider>
             </motion.div>
