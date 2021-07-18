@@ -9,6 +9,9 @@
 ## Acesse 🚀🚀🚀
 [talkut.com.br](https://talkut.com.br)
 
+## Stack 🧶
+- NextJs
+- Deploy feito na Vercel
 
 ## Features 🥗
 - Autenticação OAuth com GitHub
