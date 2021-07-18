@@ -33,7 +33,7 @@ export default function Followers() {
                     <UserSidebar />
                     <div className="bg-white rounded-xl p-4 flex-grow">
                         <h3 className="font-bold text-2xl mb-3">Seguidores</h3>
-                        <div className="flex gap-2">
+                        <div className="flex flex-wrap gap-2">
                             {followers.map(follower => (
                                 <UserProfileThumb key={follower.id} user={follower} />
                             ))}
