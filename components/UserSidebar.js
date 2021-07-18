@@ -9,7 +9,7 @@ export default function UserSidebar() {
 
     return (
         <div className={styles.wrapper}>
-            {!isLoading &&
+            {Object.keys(user).length > 0 &&
                 <>
                     <div className="relative">
                         <Image
