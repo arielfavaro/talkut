@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 
 export default function UserFollowers() {
@@ -15,9 +16,9 @@ export default function UserFollowers() {
 
     return (
         <>
-            <h3 className="text-xl font-bold mb-3">Meus Seguidores</h3>
+            <h3 className="text-xl font-bold mb-3">Meus Seguidores ({followers.length})</h3>
             <div className="grid grid-cols-3 gap-x-3">
-                {followers.map(follower => (
+                {followers.slice(0, 9).map(follower => (
                     <div key={follower.id}>
                         <Image
                             className="rounded-lg"
@@ -31,6 +32,11 @@ export default function UserFollowers() {
                     </div>
                 ))}
             </div>
+            {followers.length > 9 &&
+                <Link href="/followers">
+                    Ver Mais
+                </Link>
+            }
         </>
     )
 }

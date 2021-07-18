@@ -1,7 +1,8 @@
 import UserInfo from "@/components/UserInfo"
 import { GoRepo } from 'react-icons/go'
 import { RiGitRepositoryPrivateLine } from 'react-icons/ri'
-import { useUser } from "../hooks/user"
+import Shimmer from "react-shimmer-effect"
+import { useUser } from "@/hooks/user"
 
 export default function UserResumeSection() {
 
@@ -21,6 +22,13 @@ export default function UserResumeSection() {
                     </div>
                 </>
             }
+            {isLoading && <>
+                <Shimmer>
+                    <div className="w-full h-12"></div>
+                    <div className="w-full px-4 h-4 pb-4"></div>
+                    <div className="px-4 h-4"></div>
+                </Shimmer>
+            </>}
         </div>
     )
 }
