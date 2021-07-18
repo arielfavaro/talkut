@@ -47,11 +47,11 @@ function TalkutApp({ Component, pageProps, router }) {
                 },
             }}>
                 <Provider session={pageProps.session}>
-                    <EnsureAuthenticated>
+                    {/* <EnsureAuthenticated> */}
                         <UserProvider>
                             <Component {...pageProps} />
                         </UserProvider>
-                    </EnsureAuthenticated>
+                    {/* </EnsureAuthenticated> */}
                 </Provider>
             </motion.div>
         </>

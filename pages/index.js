@@ -5,6 +5,7 @@ import UserResumeSection from '@/components/UserResumeSection'
 import UserFollowers from '@/components/UserFollowers'
 import UserFollowing from '@/components/UserFollowing'
 import NavBar from '@/components/NavBar'
+import { getSession } from 'next-auth/client'
 
 export default function Home() {
 
@@ -28,4 +29,22 @@ export default function Home() {
             </div>
         </>
     )
+}
+
+export async function getServerSideProps({ req }) {
+
+    const session = await getSession({ req })
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/auth/login',
+                permantent: false,
+            },
+        }
+    }
+
+    return {
+        props: {}
+    }
 }
