@@ -4,9 +4,9 @@ import Link from "next/link"
 export default function UserProfileThumb({ user }) {
 
     return (
-        <div className="relative">
+        <div>
             <Link href={user.html_url}>
-                <a target="_blank" rel="noreferrer">
+                <a className="relative" target="_blank" rel="noreferrer">
                     <Image
                         className="rounded-lg brightness-50"
                         src={user.avatar_url}

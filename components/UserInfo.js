@@ -2,11 +2,11 @@ export default function UserInfo({ label, value, icon }) {
     return (
         <div>
             <span className="block">{label}</span>
-            <div className="flex items-center">
-                <div className="font-3xl">
+            <div className="flex items-center flex gap-x-1">
+                <div>
                     {icon}
                 </div>
-                {value}
+                <span className="font-bold">{value}</span>
             </div>
         </div>
     )

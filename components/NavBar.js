@@ -10,16 +10,23 @@ export default function NavBar() {
     return (
         <nav className="bg-primary py-2 mb-4">
             <div className="container flex flex-wrap items-center gap-x-4">
-                <div className="bg-white rounded-full px-4 flex items-center">
-                    <Image
-                        src="/logo-color.svg"
-                        alt="Talkut"
-                        width="80"
-                        height="40"
-                    />
+                <div className="bg-white rounded-full px-4">
+                    <Link href="/">
+                        <a className="flex">
+                            <Image
+                                src="/logo-color.svg"
+                                alt="Talkut"
+                                width="80"
+                                height="40"
+                            />
+                        </a>
+                    </Link>
                 </div>
                 <Link href="/followers">
                     <a className="text-white">Seguidores</a>
+                </Link>
+                <Link href="/following">
+                    <a className="text-white">Seguindo</a>
                 </Link>
                 <Link href="/repositories">
                     <a className="text-white">Repositórios</a>

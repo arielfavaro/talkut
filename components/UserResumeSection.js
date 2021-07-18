@@ -1,6 +1,7 @@
 import UserInfo from "@/components/UserInfo"
 import { GoRepo } from 'react-icons/go'
 import { RiGitRepositoryPrivateLine } from 'react-icons/ri'
+import { BsCalendar } from 'react-icons/bs'
 import Shimmer from "react-shimmer-effect"
 import { useUser } from "@/hooks/user"
 
@@ -17,8 +18,9 @@ export default function UserResumeSection() {
                     <p className="text-gray-400"><span className="font-bold">Sorte de hoje: </span>Se logou, está funcionando 🚀</p>
 
                     <div className="grid grid-cols-4 py-4">
-                        <UserInfo label="Repositórios Públicos" value={user.public_repos} icon={<GoRepo />} />
-                        <UserInfo label="Repositórios Privados" value={user.total_private_repos} icon={<RiGitRepositoryPrivateLine />} />
+                        <UserInfo label="Repositórios Públicos" value={user.public_repos} icon={<GoRepo className="text-xl" />} />
+                        <UserInfo label="Repositórios Privados" value={user.total_private_repos} icon={<RiGitRepositoryPrivateLine className="text-xl" />} />
+                        <UserInfo label="GitHub criado em" value={(new Date(user.created_at)).toLocaleString('pt-BR', { hour12: false })} icon={<BsCalendar className="text-xl" />} />
                     </div>
                 </>
             }
