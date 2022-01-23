@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import UserSidebar from '@/components/UserSidebar'
 import Link from 'next/link'
 import Shimmer from "react-shimmer-effect"
+import { getSession } from 'next-auth/react'
 
 export default function Repositories() {
 
@@ -53,4 +54,22 @@ export default function Repositories() {
             </div>
         </>
     )
+}
+
+export async function getServerSideProps({ req }) {
+
+    const session = await getSession({ req })
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/auth/login',
+                permantent: false,
+            },
+        }
+    }
+
+    return {
+        props: {}
+    }
 }

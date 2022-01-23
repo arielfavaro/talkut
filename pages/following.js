@@ -2,9 +2,9 @@ import Head from 'next/head'
 import NavBar from '@/components/NavBar'
 import { useEffect, useState } from 'react'
 import UserSidebar from '@/components/UserSidebar'
-import Link from 'next/link'
 import Shimmer from "react-shimmer-effect"
 import UserProfileThumb from '@/components/UserProfileThumb'
+import { getSession } from 'next-auth/react'
 
 export default function Followers() {
 
@@ -50,4 +50,22 @@ export default function Followers() {
             </div>
         </>
     )
+}
+
+export async function getServerSideProps({ req }) {
+
+    const session = await getSession({ req })
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/auth/login',
+                permantent: false,
+            },
+        }
+    }
+
+    return {
+        props: {}
+    }
 }
