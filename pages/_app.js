@@ -1,12 +1,9 @@
 import Head from 'next/head'
 import '@/styles/globals.css'
-// import 'tailwindcss/tailwind.css'
-import { motion } from 'framer-motion'
-import { Provider } from 'next-auth/client'
-import EnsureAuthenticated from '@/components/auth/EnsureAuthenticated'
+import { SessionProvider } from 'next-auth/react'
 import { UserProvider } from '@/hooks/user'
 
-function TalkutApp({ Component, pageProps, router }) {
+function TalkutApp({ Component, pageProps: { session, ...pageProps } }) {
     return (
         <>
             <Head>
@@ -38,22 +35,11 @@ function TalkutApp({ Component, pageProps, router }) {
                 <meta name="theme-color" content="#ac5bf7" />
             </Head>
 
-            {/* <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" variants={{
-                pageInitial: {
-                    opacity: 0,
-                },
-                pageAnimate: {
-                    opacity: 1
-                },
-            }}> */}
-                <Provider session={pageProps.session}>
-                    {/* <EnsureAuthenticated> */}
-                        <UserProvider>
-                            <Component {...pageProps} />
-                        </UserProvider>
-                    {/* </EnsureAuthenticated> */}
-                </Provider>
-            {/* </motion.div> */}
+            <SessionProvider session={session}>
+                <UserProvider>
+                    <Component {...pageProps} />
+                </UserProvider>
+            </SessionProvider>
         </>
     )
 }

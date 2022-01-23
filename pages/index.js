@@ -5,7 +5,7 @@ import UserResumeSection from '@/components/UserResumeSection'
 import UserFollowers from '@/components/UserFollowers'
 import UserFollowing from '@/components/UserFollowing'
 import NavBar from '@/components/NavBar'
-import { getSession } from 'next-auth/client'
+import { getSession } from 'next-auth/react'
 
 export default function Home() {
 

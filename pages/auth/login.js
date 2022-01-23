@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { getProviders, getSession, signIn } from 'next-auth/client'
+import { getProviders, getSession, signIn } from 'next-auth/react'
 
 export default function Login({ providers }) {
 

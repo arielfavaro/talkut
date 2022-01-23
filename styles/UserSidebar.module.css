@@ -1,6 +1,6 @@
 .wrapper {
     /* @apply dark:bg-background-dark-secondary */
-    @apply bg-white rounded-xl shadow text-white w-40 overflow-hidden hidden lg:block;
+    @apply bg-white rounded-xl shadow text-white w-40 flex-none overflow-hidden hidden lg:block;
 }
 
 .heading {

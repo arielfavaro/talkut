@@ -1,77 +1,52 @@
 import NextAuth from "next-auth"
-import Providers from "next-auth/providers"
+import GithubProvider from "next-auth/providers/github"
 
 export default NextAuth({
+    secret: process.env.SECRET,
     providers: [
-        Providers.GitHub({
+        GithubProvider({
             clientId: process.env.GITHUB_ID,
-            clientSecret: process.env.GITHUB_SECRET
+            clientSecret: process.env.GITHUB_SECRET,
+            // authorization: "https://github.com/login/oauth/authorize?scope=read:user+user:email",
         }),
     ],
-
-    secret: process.env.SECRET,
-
-    // database: process.env.DATABASE_URL,
-    database: {
-        type: 'mysql',
-        host: process.env.DATABASE_HOST,
-        port: 3306,
-        username: process.env.DATABASE_USER,
-        password: process.env.DATABASE_PASSWORD,
-        database: process.env.DATABASE_NAME,
-        synchronize: true
-    },
-
     pages: {
         signIn: '/auth/login',
     },
-
     session: {
-        jwt: true,
+        // Choose how you want to save the user session.
+        // The default is `"jwt"`, an encrypted JWT (JWE) in the session cookie.
+        // If you use an `adapter` however, we default it to `"database"` instead.
+        // You can still force a JWT session by explicitly defining `"jwt"`.
+        // When using `"database"`, the session cookie will only contain a `sessionToken` value,
+        // which is used to look up the session in the database.
+        // strategy: "database",
 
-        // TODO
-        // // A secret to use for key generation - you should set this explicitly
-        // // Defaults to NextAuth.js secret if not explicitly specified.
-        // // This is used to generate the actual signingKey and produces a warning
-        // // message if not defined explicitly.
-        // secret: 'INp8IvdIyeMcoGAgFGoA61DdBglwwSqnXJZkgz8PSnw',
-        // // You can generate a signing key using `jose newkey -s 512 -t oct -a HS512`
-        // // This gives you direct knowledge of the key used to sign the token so you can use it
-        // // to authenticate indirectly (eg. to a database driver)
-        // signingKey: {
-        //     kty: "oct",
-        //     kid: "Dl893BEV-iVE-x9EC52TDmlJUgGm9oZ99_ZL025Hc5Q",
-        //     alg: "HS512",
-        //     k: "K7QqRmJOKRK2qcCKV_pi9PSBv3XP0fpTu30TP8xn4w01xR3ZMZM38yL2DnTVPVw6e4yhdh0jtoah-i4c_pZagA"
-        // },
-        // // If you chose something other than the default algorithm for the signingKey (HS512)
-        // // you also need to configure the algorithm
-        // verificationOptions: {
-        //     algorithms: ['HS256']
-        // },
-        // // Set to true to use encryption. Defaults to false (signing only).
-        // encryption: true,
-        // encryptionKey: "",
-        // // decryptionKey: encryptionKey,
-        // decryptionOptions: {
-        //     algorithms: ['A256GCM']
-        // },
+        // Seconds - How long until an idle session expires and is no longer valid.
+        maxAge: 7 * 24 * 60 * 60, // 7 days
+
+        // Seconds - Throttle how frequently to write to database to extend a session.
+        // Use it to limit write operations. Set to 0 to always update the database.
+        // Note: This option is ignored if using JSON Web Tokens
+        updateAge: 24 * 60 * 60, // 24 hours
     },
-
+    theme: {
+        colorScheme: "auto", // "auto" | "dark" | "light"
+        brandColor: "", // Hex color code
+        logo: "" // Absolute URL to image
+    },
     callbacks: {
-        // TODO verify security risks
-        async jwt(token, user, account, profile, isNewUser) {
-            // Add access_token to the token right after signin
-            if (account?.accessToken) {
-                token.accessToken = account.accessToken
+        async jwt({ token, account }) {
+            // Persist the OAuth access_token to the token right after signin
+            if (account) {
+                token.accessToken = account.access_token;
             }
-            return token
+            return token;
         },
-        async session(session, user) {
-            session.accessToken = user.accessToken
-            return session
+        async session({ session, token, user }) {
+            // Send properties to the client, like an access_token from a provider.
+            session.accessToken = token.accessToken;
+            return session;
         },
     },
-
-    debug: process.env.DEBUG ?? false,
 })
